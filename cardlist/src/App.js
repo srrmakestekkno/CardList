@@ -8,43 +8,43 @@ const CardList = (props) => (
   </div>
 );
 
-class Card extends React.Component {
-  render() {
-    const profile = this.props;
-    return (
-      <div className='github-profile'>
-        <img src={profile.avatar_url} />
-        <div className='info'>
-          <div className='name'>{profile.name}</div>
-          <div className='company'>{profile.company}</div>
-        </div>
+const Card = (props) => {
+  const profile = this.props;
+  return (
+    <div className='github-profile'>
+      <img src={profile.avatar_url} />
+      <div className='info'>
+        <div className='name'>{profile.name}</div>
+        <div className='company'>{profile.company}</div>
       </div>
-    );
-  }
+    </div>
+  );
+
 }
 
-class Form extends React.Component {
-  state = { userNane: "" };
-  handleSubmit = async (event) => {
+const Form = (props) => {
+  const [userName, setUserName] = useState("");
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const resp = await axios.get(`https://github.com/users/${this.state.userNane}`);
-    this.props.onSubmit(resp.data);
-    this.setState({ userNane: "" });
+    const resp = await axios.get(`https://github.com/users/${userName}`);
+    props.onSubmit(resp.data);
+    setUserName({ userName: "" });
   };
 
-  render() {
+  
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={this.state.userNane}
-          onChange={event => this.setState({ userNane: event.target.value })}
+          value={userName}
+          onChange={event => setUserName(event.target.value)}
           placeholder='Search username'
           required />
           <button>Add Card</button>
       </form>
     );
-  }
+  
 }
 
 class App extends React.Component {
