@@ -1,6 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 
+class Card extends React.Component {
+  
+}
+
 function App() {
   return (
     <div className="App">
