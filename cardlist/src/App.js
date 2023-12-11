@@ -11,7 +11,7 @@ class Card extends React.Component {
 }
 
 class From extends React.Component {
-  
+
 }
 
 class App extends React.Component {
